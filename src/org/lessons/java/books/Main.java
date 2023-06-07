@@ -1,10 +1,14 @@
 package org.lessons.java.books;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Scanner scan = new Scanner(System.in);
         // Chiedo quanti libri si vogliono inserire
         System.out.println("How many books? ");
@@ -48,6 +52,21 @@ public class Main {
 
         System.out.println(Arrays.toString(books));
 
+        try {
+            FileWriter myWriter = new FileWriter("libro.txt");
+            myWriter.write(Arrays.toString(books));
+            myWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        File libroText = new File("libro.txt");
+        Scanner reader = new Scanner(libroText);
+        while (reader.hasNextLine()) {
+            String data = reader.nextLine();
+            System.out.println(data);
+        }
+        
         scan.close();
     }
 }

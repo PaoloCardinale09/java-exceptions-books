@@ -23,7 +23,10 @@ public class Book {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title) throws InvalidBookException {
+        if (title != null && !title.isBlank()) {
+            throw new InvalidBookException();
+        }
         this.title = title;
     }
 
@@ -42,7 +45,10 @@ public class Book {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(String author) throws InvalidBookException {
+        if (author != null && !title.isBlank()) {
+            throw new InvalidBookException();
+        }
         this.author = author;
     }
 
@@ -50,7 +56,10 @@ public class Book {
         return editor;
     }
 
-    public void setEditor(String editor) {
+    public void setEditor(String editor) throws InvalidBookException {
+        if (editor != null && !title.isBlank()) {
+            throw new InvalidBookException();
+        }
         this.editor = editor;
     }
 
